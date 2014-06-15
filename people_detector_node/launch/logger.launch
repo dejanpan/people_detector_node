@@ -1,0 +1,7 @@
+<launch>
+<!--publish a point cloud to "cloud_pcd" topic-->
+<!--output: cloud_pcd -->
+<node pkg="people_detector_node" type="logger_node" name="logger_node" output="screen" respawn="false">
+  <param name="input_scan_topic" type="string" value="/base_scan_rear"/>
+</node>
+</launch>

@@ -1,0 +1,18 @@
+<launch>
+<!--publish a point cloud to "cloud_pcd" topic-->
+<!--output: cloud_pcd -->
+<node pkg="people_detector_node" type="people_detector_node" name="people_detector_back_node" output="screen" respawn="false">
+  <param name="threshold" type="double" value="0.15"/>
+  <param name="hypotheses_filename" type="string" value="$(find people_detector_node)/training_data/hypo3.dat"/>
+  <param name="num_hypotheses" type="int" value="100"/>
+  <param name="input_scan_topic" type="string" value="/base_scan_rear"/>
+</node>
+
+<node pkg="people_detector_node" type="people_detector_node" name="people_detector_front_node" output="screen" respawn="false">
+  <param name="threshold" type="double" value="0.15"/>
+  <param name="hypotheses_filename" type="string" value="$(find people_detector_node)/training_data/hypo3.dat"/>
+  <param name="num_hypotheses" type="int" value="100"/>
+  <param name="input_scan_topic" type="string" value="/base_scan_front"/>
+</node>
+
+</launch>
