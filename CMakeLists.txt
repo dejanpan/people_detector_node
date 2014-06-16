@@ -50,3 +50,12 @@ set_target_properties(people_detector_node
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CATKIN_DEVEL_PREFIX}/lib/people_detector_node"
 )
+
+add_executable(logger src/logger.cpp)
+target_link_libraries(logger
+  ${catkin_LIBRARIES}
+  )
+set_target_properties(logger
+  PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY "${CATKIN_DEVEL_PREFIX}/lib/people_detector_node"
+  )
