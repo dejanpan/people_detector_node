@@ -34,18 +34,19 @@ link_directories(
    )
 
 add_executable(people_detector_node src/people_detector_node.cpp)
-
 target_link_libraries(people_detector_node
- "-Wl,--whole-archive" 
-libcommon.a
-libfeatures.a
-liblinalg.a
-libPeopleDetector.a 
-"-Wl,--no-whole-archive"
-gsl gslcblas m
- # ${catkin_LIBRARIES} 
- # ${CMAKE_CURRENT_BINARY_DIR}/people_detector-prefix/src/people_detector/features/libfeatures.a 
- # ${CMAKE_CURRENT_BINARY_DIR}/people_detector-prefix/src/people_detector/common/libcommon.a 
- # ${CMAKE_CURRENT_BINARY_DIR}/people_detector-prefix/src/people_detector/PeopleDetector/libPeopleDetector.a
+  ${catkin_LIBRARIES}
+  #needed to be able to combine static and shared libraries
+  "-Wl,--whole-archive" 
+  libcommon.a
+  libfeatures.a
+  liblinalg.a
+  libPeopleDetector.a 
+  "-Wl,--no-whole-archive"
+  gsl gslcblas m
   )
 add_dependencies(people_detector_node people_detector)
+set_target_properties(people_detector_node
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CATKIN_DEVEL_PREFIX}/lib/people_detector_node"
+)
